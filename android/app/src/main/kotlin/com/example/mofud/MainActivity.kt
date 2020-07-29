@@ -1,0 +1,6 @@
+package com.example.mofud
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
