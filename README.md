@@ -1,4 +1,4 @@
-# mofud
+# MoFud
 
 Food Delivery App
 
