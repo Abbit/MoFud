@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
+import 'package:mofud/constants/styles.dart';
 import 'package:mofud/models/dish_model.dart';
 import 'package:mofud/widgets/background_image.dart';
 import 'package:mofud/widgets/favorite_button.dart';
@@ -27,7 +29,7 @@ class DishCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).primaryColor.withOpacity(0.15),
@@ -69,16 +71,10 @@ class DishCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(dish.title,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          )),
+                          style: AppStyles.heading1),
                       Text(
                         dish.subtitle,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
+                        style: AppStyles.caption1
                       ),
                     ],
                   ),

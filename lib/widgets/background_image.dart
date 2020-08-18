@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mofud/constants/colors.dart';
 
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key key, @required this.imageUrl, this.child})
@@ -10,7 +11,7 @@ class BackgroundImage extends StatelessWidget {
   final Widget child;
 
   Widget _buildImagePlaceholder() {
-    return Container(color: Colors.white);
+    return Container(color: AppColors.white);
   }
 
   @override
@@ -27,7 +28,7 @@ class BackgroundImage extends StatelessWidget {
                   errorWidget: (context, url, error) {
                     debugPrint(error.toString());
 
-                    return Container(color: Colors.red);
+                    return Container(color: AppColors.primary);
                   },
                 )
               : _buildImagePlaceholder(),

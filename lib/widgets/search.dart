@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
 import 'package:mofud/constants/strings.dart';
 
 class Search extends StatelessWidget {
@@ -8,7 +9,7 @@ class Search extends StatelessWidget {
       height: 56,
       width: MediaQuery.of(context).size.width - 32,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -32,7 +33,7 @@ class Search extends StatelessWidget {
                       decoration: InputDecoration(
                         icon: const Icon(
                           Icons.search,
-                          color: Colors.grey,
+                          color: AppColors.lightGrey,
                           size: 26,
                         ),
                         hintText: AppStrings.headerSearchHintText,

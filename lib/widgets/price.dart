@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/styles.dart';
 
 class Price extends StatelessWidget {
   Price({Key key, this.price}) : super(key: key);
@@ -9,12 +10,7 @@ class Price extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '\$${price.toStringAsFixed(2)}',
-      style: TextStyle(
-        color: Theme.of(context).primaryColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 14,
-        letterSpacing: 0.00001,
-      ),
+      style: AppStyles.numbers.copyWith(color: Theme.of(context).primaryColor),
     );
   }
 }

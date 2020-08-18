@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mofud/constants/colors.dart';
+import 'package:mofud/constants/styles.dart';
 import 'package:mofud/cubits/dishes_cubit.dart';
 import 'package:mofud/cubits/generic_state.dart';
 import 'package:mofud/models/dish_model.dart';
@@ -35,17 +37,14 @@ class DishScreenSectionTitle extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Colors.black,
+            color: AppColors.black,
             width: 1,
           ),
         ),
       ),
       child: Text(
         title.toUpperCase(),
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
+        style: AppStyles.heading1,
       ),
     );
   }
@@ -78,7 +77,7 @@ class _DishScreenState extends State<DishScreen> {
 
   Widget _buildImagePlaceholder() {
     return Container(
-      color: Colors.red,
+      color: AppColors.primary,
     );
   }
 
@@ -106,7 +105,7 @@ class _DishScreenState extends State<DishScreen> {
         physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.all(0),
         itemCount: _extrasList.length,
-        separatorBuilder: (_, __) => Divider(color: Colors.grey),
+        separatorBuilder: (_, __) => Divider(color: AppColors.lightGrey),
         itemBuilder: (_, index) {
           final String title = _extrasList[index].title;
           final double price = _extrasList[index].price;
@@ -117,11 +116,11 @@ class _DishScreenState extends State<DishScreen> {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  style: AppStyles.heading1,
                 ),
                 Text(
                   ' + \$${price.toStringAsFixed(2)}',
-                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                  style: AppStyles.caption2,
                 ),
               ],
             ),
@@ -162,7 +161,7 @@ class _DishScreenState extends State<DishScreen> {
                                 image: imageProvider,
                                 fit: BoxFit.cover,
                                 colorFilter: ColorFilter.mode(
-                                    Colors.black.withOpacity(0.35),
+                                    AppColors.black.withOpacity(0.35),
                                     BlendMode.srcOver)),
                           ),
                         ),
@@ -170,7 +169,7 @@ class _DishScreenState extends State<DishScreen> {
                         errorWidget: (context, url, error) {
                           debugPrint(error.toString());
 
-                          return Container(color: Colors.red);
+                          return Container(color: AppColors.primary);
                         },
                       )
                     : _buildImagePlaceholder(),
@@ -178,7 +177,7 @@ class _DishScreenState extends State<DishScreen> {
               Column(
                 children: [
                   AppBar(
-                    iconTheme: const IconThemeData(color: Colors.white),
+                    iconTheme: const IconThemeData(color: AppColors.white),
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                   ),
@@ -238,10 +237,7 @@ class _DishScreenState extends State<DishScreen> {
                             children: [
                               Text(
                                 '${dish.title}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
+                                style: AppStyles.heading2,
                               ),
                               Price(
                                 price: dish.price,
@@ -255,7 +251,7 @@ class _DishScreenState extends State<DishScreen> {
                               KeyStat(
                                 caption: 'Rating',
                                 number: dish.rating,
-                                backgroundColor: Colors.amber,
+                                backgroundColor: AppColors.yellow,
                                 icon: Icons.star,
                               ),
                               KeyStat(
@@ -271,13 +267,13 @@ class _DishScreenState extends State<DishScreen> {
                           SizedBox(height: 16),
                           Text(
                             dishDetails,
-                            style: TextStyle(color: Colors.black54),
+                            style: AppStyles.text,
                           ),
                           SizedBox(height: 40),
                           DishScreenSectionTitle('Extras'),
                           SizedBox(height: 24),
                           _buildExtrasList(),
-                          Divider(color: Colors.grey),
+                          Divider(color: AppColors.lightGrey),
                           SizedBox(height: 24),
                           DishScreenSectionTitle('Quantity'),
                           SizedBox(height: 12),
@@ -286,11 +282,7 @@ class _DishScreenState extends State<DishScreen> {
                             children: [
                               Text(
                                 '$_quantity item${_quantity > 1 ? 's' : ''}',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                                style: AppStyles.textGrey,
                               ),
                               Counter(
                                 value: _quantity,
@@ -331,10 +323,9 @@ class _DishScreenState extends State<DishScreen> {
                 onPressed: () {},
                 trailing: Text(
                   '\$${totalPrice.toStringAsFixed(2)}',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16),
+                  style: AppStyles.button.copyWith(
+                    letterSpacing: -0.5,
+                  ),
                 ),
               )),
         )

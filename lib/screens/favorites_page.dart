@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mofud/constants/routes.dart';
 import 'package:mofud/constants/strings.dart';
+import 'package:mofud/constants/styles.dart';
 import 'package:mofud/cubits/dishes_cubit.dart';
 import 'package:mofud/cubits/generic_state.dart';
 import 'package:mofud/models/dish_model.dart';
@@ -48,6 +49,17 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
+  Widget _buildEmptyFavoritesPage() {
+    return Center(
+      child: Column(
+        children: [
+          Text(AppStrings.favoritesPageTitle),
+          Text(AppStrings.favoritesPageSubTitle),
+        ],
+      ),
+    );
+  }
+
   Widget _buildBody(BuildContext context) {
     void onDishCardTap(Dish dish) {
       Navigator.of(context)
@@ -62,7 +74,7 @@ class FavoritesPage extends StatelessWidget {
           AppBar(
             title: Text(
               AppStrings.favoritesPageAppBarTitle,
-              style: TextStyle(color: Colors.black),
+              style: AppStyles.heading3,
             ),
             elevation: 0,
             backgroundColor: Colors.transparent,
@@ -85,8 +97,12 @@ class FavoritesPage extends StatelessWidget {
                     .data.favoritableDishList
                     .where((dish) => dish.isFavorite));
 
-                return _buildDishGrid(favoriteDishList,
-                    dishesCubit.toggleDishFavorite, onDishCardTap);
+                final bool isListHaveEntries = favoriteDishList.length > 0;
+
+                return isListHaveEntries
+                    ? _buildDishGrid(favoriteDishList,
+                        dishesCubit.toggleDishFavorite, onDishCardTap)
+                    : _buildEmptyFavoritesPage();
               }
 
               return Container(child: Text('lol'));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
 import 'package:mofud/constants/routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,21 +18,22 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> loadData() async {
+    // TODO: change for load real data
     Future.delayed(Duration(seconds: 3), onDoneLoading);
   }
 
   void onDoneLoading() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        Routes.homeScreen, (_) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(Routes.homeScreen, (_) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.cyan),
+      decoration: BoxDecoration(color: AppColors.primary),
       child: Center(
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.redAccent),
+          valueColor: AlwaysStoppedAnimation(AppColors.white),
         ),
       ),
     );

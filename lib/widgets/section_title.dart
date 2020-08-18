@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/styles.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle(this.title, {Key key})
@@ -13,7 +14,7 @@ class SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Text(
         this.title,
-        style: Theme.of(context).textTheme.headline5,
+        style: AppStyles.heading3,
       ),
     );
   }

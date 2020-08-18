@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
+import 'package:mofud/constants/styles.dart';
 
 class Rating extends StatelessWidget {
   Rating({Key key, this.rating}) : super(key: key);
@@ -11,16 +13,12 @@ class Rating extends StatelessWidget {
       children: [
         const Icon(
           Icons.star,
-          color: Colors.amber,
+          color: AppColors.yellow,
           size: 18,
         ),
         Text(
           rating.toString(),
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.00001,
-          ),
+          style: AppStyles.numbers,
         ),
       ],
     );

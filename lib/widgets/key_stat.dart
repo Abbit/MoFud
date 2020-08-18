@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
+import 'package:mofud/constants/styles.dart';
 
 class KeyStat extends StatelessWidget {
   KeyStat(
@@ -27,7 +29,7 @@ class KeyStat extends StatelessWidget {
             padding: EdgeInsets.all(8),
             child: Icon(
               icon,
-              color: Colors.white,
+              color: AppColors.white,
             ),
           ),
         ),
@@ -38,11 +40,11 @@ class KeyStat extends StatelessWidget {
           children: [
             Text(
               number.toString(),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: AppStyles.numbers,
             ),
             Text(
               caption,
-              style: TextStyle(color: Colors.grey),
+              style: AppStyles.caption2,
             ),
           ],
         ),

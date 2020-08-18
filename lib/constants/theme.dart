@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
 
 final appTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: const Color(0xFFBC2B3D),
-  scaffoldBackgroundColor: const Color(0xFFf9f6f6),
-  backgroundColor: const Color(0xFFFFFFFF),
+  primaryColor: AppColors.primary,
+  scaffoldBackgroundColor: AppColors.background,
+  backgroundColor: AppColors.background,
   visualDensity: VisualDensity.adaptivePlatformDensity,
 );

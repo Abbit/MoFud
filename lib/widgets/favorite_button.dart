@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/colors.dart';
 
 class FavoriteButton extends StatelessWidget {
   FavoriteButton({Key key, @required this.isFavorite, this.onPressed})
@@ -12,7 +13,7 @@ class FavoriteButton extends StatelessWidget {
     return RawMaterialButton(
       onPressed: onPressed,
       shape: const CircleBorder(),
-      fillColor: Colors.white,
+      fillColor: AppColors.white,
       constraints: const BoxConstraints(maxWidth: 40, maxHeight: 40),
       padding: const EdgeInsets.all(6),
       child: Icon(
