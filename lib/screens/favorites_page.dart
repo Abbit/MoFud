@@ -8,6 +8,7 @@ import 'package:mofud/cubits/generic_state.dart';
 import 'package:mofud/models/dish_model.dart';
 import 'package:mofud/screens/dish_screen.dart';
 import 'package:mofud/widgets/dish_card.dart';
+import 'package:mofud/widgets/empty_page_template.dart';
 
 class FavoritesPage extends StatelessWidget {
   FavoritesPage();
@@ -49,14 +50,11 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildEmptyFavoritesPage() {
-    return Center(
-      child: Column(
-        children: [
-          Text(AppStrings.favoritesPageTitle),
-          Text(AppStrings.favoritesPageSubTitle),
-        ],
-      ),
+  Widget _buildEmptyPage() {
+    return EmptyPageTemplate(
+      title: AppStrings.favoritesPageEmptyTitle,
+      subTitle: AppStrings.favoritesPageEmptySubTitle,
+      imagePath: AppStrings.favoritesPageEmptyImagePath,
     );
   }
 
@@ -97,12 +95,12 @@ class FavoritesPage extends StatelessWidget {
                     .data.favoritableDishList
                     .where((dish) => dish.isFavorite));
 
-                final bool isListHaveEntries = favoriteDishList.length > 0;
+                final bool renderEmptyPage = favoriteDishList.length == 0;
 
-                return isListHaveEntries
-                    ? _buildDishGrid(favoriteDishList,
-                        dishesCubit.toggleDishFavorite, onDishCardTap)
-                    : _buildEmptyFavoritesPage();
+                return renderEmptyPage
+                    ? _buildEmptyPage()
+                    : _buildDishGrid(favoriteDishList,
+                        dishesCubit.toggleDishFavorite, onDishCardTap);
               }
 
               return Container(child: Text('lol'));

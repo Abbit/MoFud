@@ -22,6 +22,11 @@ class AppStyles {
     color: AppColors.black,
     fontSize: 24,
   );
+  static const heading4 = TextStyle(
+    color: AppColors.black,
+    fontSize: 26,
+    fontWeight: FontWeight.bold,
+  );
 
   static const headerTitle = TextStyle(
     color: AppColors.white,
@@ -37,6 +42,7 @@ class AppStyles {
   );
 
   static final textLight = text.copyWith(
+    color: AppColors.lightGrey,
     fontWeight: FontWeight.w300,
   );
 
