@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/strings.dart';
 
 class Search extends StatelessWidget {
   @override
@@ -34,7 +35,7 @@ class Search extends StatelessWidget {
                           color: Colors.grey,
                           size: 26,
                         ),
-                        hintText: 'Find a food',
+                        hintText: AppStrings.headerSearchHintText,
                         border: InputBorder.none,
                       ),
                     ),

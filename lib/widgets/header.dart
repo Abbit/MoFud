@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mofud/constants/strings.dart';
 import 'package:mofud/widgets/search.dart';
 
 class Header extends StatelessWidget {
@@ -49,7 +50,7 @@ class Header extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 const Text(
-                  'Discover New',
+                  AppStrings.headerText,
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,

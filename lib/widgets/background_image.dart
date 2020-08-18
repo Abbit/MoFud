@@ -9,25 +9,32 @@ class BackgroundImage extends StatelessWidget {
   final String imageUrl;
   final Widget child;
 
+  Widget _buildImagePlaceholder() {
+    return Container(color: Colors.white);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-            constraints: BoxConstraints.expand(),
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Container(color: Colors.white),
-              errorWidget: (context, url, error) {
-                debugPrint(error.toString());
+          constraints: BoxConstraints.expand(),
+          child: imageUrl != null && imageUrl.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => _buildImagePlaceholder(),
+                  errorWidget: (context, url, error) {
+                    debugPrint(error.toString());
 
-                return Container(color: Colors.white);
-              },
-            )),
+                    return Container(color: Colors.red);
+                  },
+                )
+              : _buildImagePlaceholder(),
+        ),
         Container(
           constraints: const BoxConstraints.expand(),
-          child: child != null ? child : Container(),
+          child: child ?? Container(),
         )
       ],
     );
