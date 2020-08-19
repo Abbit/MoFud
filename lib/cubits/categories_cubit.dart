@@ -5,9 +5,9 @@ import 'package:mofud/repositories/categories_repository.dart';
 import 'package:mofud/utils/connection_checker.dart';
 
 class CategoriesCubit extends Cubit<GenericState> with ConnectionChecker {
-  final CategoriesRepository _categoriesRepository = CategoriesRepository();
+  final CategoriesRepository _categoriesRepository;
 
-  CategoriesCubit() : super(Initial());
+  CategoriesCubit(this._categoriesRepository) : super(Initial());
 
   void getAllCategories() async {
     try {

@@ -58,63 +58,59 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     void onDishCardTap(Dish dish) {
       Navigator.of(context)
           .pushNamed(Routes.dishScreen, arguments: DishScreenArgs(dish: dish));
     }
 
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppBar(
-            title: Text(
-              AppStrings.favoritesPageAppBarTitle,
-              style: AppStyles.heading3,
-            ),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          BlocBuilder<DishesCubit, GenericState>(
-            builder: (BuildContext context, state) {
-              final dishesCubit = context.bloc<DishesCubit>();
-
-              if (state is InProgress) {
-                return Container(child: Text('loading'));
-              }
-
-              if (state is Failure) {
-                debugPrint(state.message);
-                return Container(child: Text('error'));
-              }
-
-              if (state is Success<DishesCubitState>) {
-                final List<FavoritableDish> favoriteDishList = List.from(state
-                    .data.favoritableDishList
-                    .where((dish) => dish.isFavorite));
-
-                final bool renderEmptyPage = favoriteDishList.length == 0;
-
-                return renderEmptyPage
-                    ? _buildEmptyPage()
-                    : _buildDishGrid(favoriteDishList,
-                        dishesCubit.toggleDishFavorite, onDishCardTap);
-              }
-
-              return Container(child: Text('lol'));
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBody(context),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBar(
+              title: Text(
+                AppStrings.favoritesPageAppBarTitle,
+                style: AppStyles.heading3,
+              ),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+            ),
+            BlocBuilder<DishesCubit, GenericState>(
+              builder: (BuildContext context, state) {
+                final dishesCubit = context.bloc<DishesCubit>();
+
+                if (state is InProgress) {
+                  return Container(child: Text('loading'));
+                }
+
+                if (state is Failure) {
+                  debugPrint(state.message);
+                  return Container(child: Text('error'));
+                }
+
+                if (state is Success<DishesCubitState>) {
+                  final List<FavoritableDish> favoriteDishList = List.from(state
+                      .data.favoritableDishList
+                      .where((dish) => dish.isFavorite));
+
+                  final bool renderEmptyPage = favoriteDishList.length == 0;
+
+                  return renderEmptyPage
+                      ? _buildEmptyPage()
+                      : _buildDishGrid(favoriteDishList,
+                          dishesCubit.toggleDishFavorite, onDishCardTap);
+                }
+
+                return Container(child: Text('lol'));
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

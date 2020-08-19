@@ -33,8 +33,8 @@ class Header extends StatelessWidget {
                         ),
                         Text(
                           'Place: ',
-                          style:
-                              AppStyles.textLight.copyWith(color: AppColors.white),
+                          style: AppStyles.textLight
+                              .copyWith(color: AppColors.white),
                         ),
                         Text(
                           'ul. Gagarina',
@@ -50,9 +50,9 @@ class Header extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 32),
-                const Text(
+                Text(
                   AppStrings.headerText,
-                  style: AppStyles.headerTitle,
+                  style: AppStyles.heading5.copyWith(color: AppColors.white),
                 )
               ],
             ),

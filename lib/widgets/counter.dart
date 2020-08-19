@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mofud/constants/colors.dart';
 import 'package:mofud/constants/styles.dart';
 
 class Counter extends StatelessWidget {
@@ -27,9 +26,6 @@ class Counter extends StatelessWidget {
 
     return Container(
       width: 120,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: AppColors.lightGrey.withOpacity(0.5))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

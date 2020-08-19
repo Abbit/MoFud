@@ -1,26 +1,43 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
-import 'utils/router.dart';
-import 'constants/routes.dart';
-import 'constants/theme.dart';
-import 'cubits/categories_cubit.dart';
-import 'repositories/dishes_repository.dart';
-import 'utils/api_client.dart';
-import 'utils/local_database_client.dart';
-import 'utils/no_glow_scroll_behavior.dart';
-import 'cubits/dishes_cubit.dart';
-import 'models/dish_model.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mofud/cubits/orders_cubit.dart';
+import 'package:mofud/models/order_item_model.dart';
+import 'package:mofud/repositories/categories_repository.dart';
+import 'package:mofud/repositories/orders_repository.dart';
+import 'package:mofud/utils/router.dart';
+import 'package:mofud/constants/routes.dart';
+import 'package:mofud/constants/theme.dart';
+import 'package:mofud/cubits/categories_cubit.dart';
+import 'package:mofud/repositories/dishes_repository.dart';
+import 'package:mofud/utils/api_client.dart';
+import 'package:mofud/utils/local_database_client.dart';
+import 'package:mofud/utils/no_glow_scroll_behavior.dart';
+import 'package:mofud/cubits/dishes_cubit.dart';
+import 'package:mofud/models/dish_model.dart';
 
 void main() async {
-  final LocalDatabaseClient<Dish> localDatabaseClient =
+  await Hive.initFlutter();
+
+  final LocalDatabaseClient<Dish> dishesLocalDatabaseClient =
       LocalDatabaseClient<Dish>('favoriteDishes', DishAdapter());
-  await localDatabaseClient.init();
+  await dishesLocalDatabaseClient.init();
+
+  final LocalDatabaseClient<OrderItem> ordersLocalDatabaseClient =
+      LocalDatabaseClient<OrderItem>('cart', OrderItemAdapter());
+  await ordersLocalDatabaseClient.init();
 
   final ApiClient apiClient = ApiClient();
 
+  final CategoriesRepository categoriesRepository =
+      CategoriesRepository(apiClient);
+
   final DishesRepository dishesRepository =
-      DishesRepository(localDatabaseClient, apiClient);
+      DishesRepository(dishesLocalDatabaseClient, apiClient);
+
+  final OrdersRepository ordersRepository =
+      OrdersRepository(ordersLocalDatabaseClient, apiClient);
 
   final app = MultiBlocProvider(
     providers: [
@@ -28,7 +45,11 @@ void main() async {
         create: (_) => DishesCubit(dishesRepository)..getAllDishes(),
       ),
       BlocProvider<CategoriesCubit>(
-        create: (_) => CategoriesCubit()..getAllCategories(),
+        create: (_) =>
+            CategoriesCubit(categoriesRepository)..getAllCategories(),
+      ),
+      BlocProvider<OrdersCubit>(
+        create: (_) => OrdersCubit(ordersRepository)..getAllItems(),
       ),
     ],
     child: MoFudApp(),
@@ -41,6 +62,7 @@ class MoFudApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'MoFud',
       theme: appTheme,
       initialRoute: Routes.splashScreen,

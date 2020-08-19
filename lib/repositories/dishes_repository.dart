@@ -1,3 +1,4 @@
+import 'package:mofud/constants/mocks.dart';
 import 'package:mofud/models/dish_model.dart';
 import 'package:mofud/utils/api_client.dart';
 import 'package:mofud/utils/local_database_client.dart';
@@ -40,5 +41,18 @@ class DishesRepository {
     final List<Dish> favoriteDishList = await _localDBClient.getAll();
 
     return favoriteDishList;
+  }
+}
+
+class DishesMockRepository extends DishesRepository {
+  DishesMockRepository(
+      LocalDatabaseClient<Dish> localDBClient, ApiClient apiClient)
+      : super(localDBClient, apiClient);
+
+  @override
+  Future<List<Dish>> getAllDishes() async {
+    final dishes = AppMocks.dishes;
+
+    return dishes;
   }
 }

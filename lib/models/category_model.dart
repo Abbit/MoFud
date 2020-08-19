@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 
 part 'category_model.g.dart';
 
-@HiveType()
+@HiveType(typeId: 0)
 class Category extends Equatable {
   @HiveField(0)
   final String title;

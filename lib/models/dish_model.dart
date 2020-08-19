@@ -4,28 +4,28 @@ import 'package:hive/hive.dart';
 
 part 'dish_model.g.dart';
 
-@HiveType()
+@HiveType(typeId: 1)
 class Dish extends Equatable {
   @HiveField(0)
-  final int id;
-
-  @HiveField(1)
   final String title;
 
-  @HiveField(2)
+  @HiveField(1)
   final double price;
 
-  @HiveField(3)
+  @HiveField(2)
   final String imageUrl;
 
-  @HiveField(4)
+  @HiveField(3)
   final String subtitle;
 
-  @HiveField(5)
+  @HiveField(4)
   final double rating;
 
-  @HiveField(6)
+  @HiveField(5)
   final int ratingsCount;
+
+  @HiveField(6)
+  final int id;
 
   Dish({
     @required this.title,

@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class LocalDatabaseClient<T> {
   final String _dbName;
@@ -9,18 +8,21 @@ class LocalDatabaseClient<T> {
   LocalDatabaseClient(this._dbName, this._adapter);
 
   Future<void> init() async {
-    await Hive.initFlutter();
     Hive.registerAdapter(_adapter);
 
     _box = await Hive.openBox<T>(_dbName);
   }
 
   Future<void> put(String key, T value) async {
-    _box.put(key, value);
+    await _box.put(key, value);
   }
 
   Future<void> delete(String key) async {
-    _box.delete(key);
+    await _box.delete(key);
+  }
+
+  Future<void> update(String key, T newValue) async {
+    await _box.put(key, newValue);
   }
 
   Future<T> get(String key) async {
@@ -33,5 +35,9 @@ class LocalDatabaseClient<T> {
 
   Future<List<T>> getAll() async {
     return List<T>.from(_box.values);
+  }
+
+  Future<void> deleteAll() async {
+    await _box.clear();
   }
 }

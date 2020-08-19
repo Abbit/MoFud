@@ -24,8 +24,11 @@ class AppStrings {
   static const cartPageAppBarTitle = 'My Cart';
   static const cartPageEmptyTitle = 'Cart Empty';
   static const cartPageEmptySubTitle =
-      'Good food is always cooking! Go ahead, order some yummy food from menu';
+      'Good food is always cooking! Go ahead, order some yummy food from menu.';
   static const cartPageEmptyImagePath = 'assets/cartpage-drawing.png';
+  static const cartPageModalTitle = 'Your order is confirmed!';
+  static const cartPageModalSubTitle =
+      'Please wait a few minutes while we will deliver it to you.';
 
   // BottomNavigationBar item titles
 

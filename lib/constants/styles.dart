@@ -28,8 +28,8 @@ class AppStyles {
     fontWeight: FontWeight.bold,
   );
 
-  static const headerTitle = TextStyle(
-    color: AppColors.white,
+  static const heading5 = TextStyle(
+    color: AppColors.black,
     fontSize: 32,
     fontWeight: FontWeight.w500,
   );

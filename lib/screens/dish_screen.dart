@@ -5,7 +5,9 @@ import 'package:mofud/constants/colors.dart';
 import 'package:mofud/constants/styles.dart';
 import 'package:mofud/cubits/dishes_cubit.dart';
 import 'package:mofud/cubits/generic_state.dart';
+import 'package:mofud/cubits/orders_cubit.dart';
 import 'package:mofud/models/dish_model.dart';
+import 'package:mofud/models/order_item_model.dart';
 import 'package:mofud/widgets/button.dart';
 import 'package:mofud/widgets/counter.dart';
 import 'package:mofud/widgets/favorite_button.dart';
@@ -186,8 +188,9 @@ class _DishScreenState extends State<DishScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       BlocBuilder<DishesCubit, GenericState>(
-                        builder: (BuildContext context, state) {
-                          final dishesCubit = context.bloc<DishesCubit>();
+                        builder: (context, state) {
+                          final DishesCubit dishesCubit =
+                              context.bloc<DishesCubit>();
 
                           void onFavPressed() =>
                               dishesCubit.toggleDishFavorite(dish);
@@ -318,16 +321,29 @@ class _DishScreenState extends State<DishScreen> {
                 )
               ]),
               padding: EdgeInsets.only(left: 40, right: 40, bottom: 20),
-              child: Button(
-                text: 'add to cart',
-                onPressed: () {},
-                trailing: Text(
-                  '\$${totalPrice.toStringAsFixed(2)}',
-                  style: AppStyles.button.copyWith(
-                    letterSpacing: -0.5,
+              child: BlocBuilder<OrdersCubit, OrdersState>(
+                  builder: (context, state) {
+                final OrdersCubit ordersCubit = context.bloc<OrdersCubit>();
+
+                void addToCart() {
+                  final OrderItem item = OrderItem(dish, _quantity);
+
+                  ordersCubit.addItem(item);
+
+                  Navigator.of(context).pop();
+                }
+
+                return Button(
+                  text: 'add to cart',
+                  onPressed: addToCart,
+                  trailing: Text(
+                    '\$${totalPrice.toStringAsFixed(2)}',
+                    style: AppStyles.button.copyWith(
+                      letterSpacing: -0.5,
+                    ),
                   ),
-                ),
-              )),
+                );
+              })),
         )
       ],
     );
