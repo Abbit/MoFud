@@ -17,7 +17,6 @@ class AppStrings {
   static const favoritesPageEmptyTitle = 'Where is the Love?';
   static const favoritesPageEmptySubTitle =
       'Once you favorite a dish, it will appear here.';
-  static const favoritesPageEmptyImagePath = 'assets/favoritespage-drawing.png';
 
   // Cart Page
 
@@ -25,7 +24,6 @@ class AppStrings {
   static const cartPageEmptyTitle = 'Cart Empty';
   static const cartPageEmptySubTitle =
       'Good food is always cooking! Go ahead, order some yummy food from menu.';
-  static const cartPageEmptyImagePath = 'assets/cartpage-drawing.png';
   static const cartPageModalTitle = 'Your order is confirmed!';
   static const cartPageModalSubTitle =
       'Please wait a few minutes while we will deliver it to you.';

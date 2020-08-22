@@ -1,3 +1,4 @@
+import 'package:mofud/constants/api_endpoints.dart';
 import 'package:mofud/models/order_item_model.dart';
 import 'package:mofud/utils/api_client.dart';
 import 'package:mofud/utils/local_database_client.dart';
@@ -37,7 +38,7 @@ class OrdersRepository {
       data.add({"dishId": orderItem.dish.id, "quantity": orderItem.quantity});
     }
 
-    await _apiClient.post('/orders/accept', data: data);
+    await _apiClient.post(AppApiEndpoints.createOrder, data: data);
   }
 }
 

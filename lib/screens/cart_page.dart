@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mofud/constants/assets.dart';
 import 'package:mofud/constants/colors.dart';
 import 'package:mofud/constants/strings.dart';
 import 'package:mofud/constants/styles.dart';
@@ -107,7 +108,7 @@ class CartPage extends StatelessWidget {
     return EmptyPageTemplate(
       title: AppStrings.cartPageEmptyTitle,
       subTitle: AppStrings.cartPageEmptySubTitle,
-      imagePath: AppStrings.cartPageEmptyImagePath,
+      imagePath: AppAssets.cartPageEmptyImagePath,
     );
   }
 

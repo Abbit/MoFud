@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mofud/constants/assets.dart';
 import 'package:mofud/constants/routes.dart';
 import 'package:mofud/constants/strings.dart';
 import 'package:mofud/constants/styles.dart';
@@ -54,7 +55,7 @@ class FavoritesPage extends StatelessWidget {
     return EmptyPageTemplate(
       title: AppStrings.favoritesPageEmptyTitle,
       subTitle: AppStrings.favoritesPageEmptySubTitle,
-      imagePath: AppStrings.favoritesPageEmptyImagePath,
+      imagePath: AppAssets.favoritesPageEmptyImagePath,
     );
   }
 

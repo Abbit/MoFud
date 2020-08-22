@@ -1,3 +1,4 @@
+import 'package:mofud/constants/api_endpoints.dart';
 import 'package:mofud/constants/mocks.dart';
 import 'package:mofud/models/dish_model.dart';
 import 'package:mofud/utils/api_client.dart';
@@ -10,7 +11,7 @@ class DishesRepository {
   DishesRepository(this._localDBClient, this._apiClient);
 
   Future<List<Dish>> getAllDishes() async {
-    final response = await _apiClient.get('/dishes');
+    final response = await _apiClient.get(AppApiEndpoints.getAllDishes);
 
     final dishes = List<Dish>.from(response.data.map<Dish>((dishJson) {
       dishJson['price'] = double.parse(dishJson['price']);

@@ -1,3 +1,4 @@
+import 'package:mofud/constants/api_endpoints.dart';
 import 'package:mofud/constants/mocks.dart';
 import 'package:mofud/models/category_model.dart';
 import 'package:mofud/utils/api_client.dart';
@@ -8,7 +9,7 @@ class CategoriesRepository {
   CategoriesRepository(this._apiClient);
 
   Future<List<Category>> getAllCategories() async {
-    final response = await _apiClient.get('/categories');
+    final response = await _apiClient.get(AppApiEndpoints.getAllCategories);
 
     final categories = List<Category>.from(response.data
         .map<Category>((categoryJson) => Category.fromJson(categoryJson)));

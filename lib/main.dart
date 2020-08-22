@@ -66,7 +66,7 @@ class MoFudApp extends StatelessWidget {
       title: 'MoFud',
       theme: appTheme,
       initialRoute: Routes.splashScreen,
-      onGenerateRoute: Router.generateRoute,
+      onGenerateRoute: AppRouter.generateRoute,
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: NoGlowBehavior(),

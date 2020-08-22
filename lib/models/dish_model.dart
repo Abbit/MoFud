@@ -42,7 +42,7 @@ class Dish extends Equatable {
         title: json['title'],
         price: json['price'],
         imageUrl: json['imageUrl'],
-        subtitle: json['subtitle'],
+        subtitle: json['subtitle'] ?? '',
         rating: json['rating'],
         ratingsCount: json['ratingsCount'],
       );

@@ -4,8 +4,8 @@ import 'package:mofud/screens/dish_screen.dart';
 import 'package:mofud/screens/home_screen.dart';
 import 'package:mofud/screens/splash_screen.dart';
 
-class Router {
-  Router._();
+class AppRouter {
+  AppRouter._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
